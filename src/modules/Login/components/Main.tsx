@@ -14,7 +14,7 @@ const Main = () => {
         >
           <LoginInput name="login" placeholder="Логин" />
           <LoginInput name="password" placeholder="Пароль" type="password" />
-          <LoginButton />
+          <LoginButton name="ВОЙТИ" />
         </div>
       </div>
     </div>
