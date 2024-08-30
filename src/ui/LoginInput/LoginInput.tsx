@@ -1,14 +1,19 @@
 import styles from './scss/style.module.scss'
 import { Props } from './Types/Props'
+import { Field } from 'formik'
 
 const LoginInput = (props: Props) => {
-  const { name, placeholder, type = 'input' } = props
+  const { name, placeholder, type = 'input', hasError } = props
 
   return (
     <div className={styles['form__group']}>
-      <input
+      <Field
         type={type}
-        className={styles['form__field']}
+        className={
+          hasError
+            ? `${styles['form__field']} ${styles['form__field_error']}`
+            : styles['form__field']
+        }
         placeholder={placeholder}
         name={name}
         required

@@ -63,3 +63,8 @@ $gray: #9b9b9b;
     box-shadow: none;
   }
 }
+
+.form__field_error {
+  border-image: linear-gradient(to right, #f52720, #9e4d34);
+  border-image-slice: 1;
+}

@@ -46,14 +46,12 @@
   outline: none;
 }
 
-.login_button:hover::before,
-.login_button:focus::before {
+.login_button:hover::before {
   opacity: 1;
   transform: scale(1, 1);
 }
 
-.login_button::after,
-.login_button:focus::after {
+.login_button::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -64,15 +62,13 @@
   transition: all 0.6s;
 }
 
-.login_button:hover::after,
-.login_button:focus::after {
+.login_button:hover::after {
   opacity: 0;
   transform: scale(0.1, 1);
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.login_button:hover,
-.login_button:focus {
+.login_button:hover {
   background-color: #fff;
   transition: all 0.6s;
 
@@ -82,7 +78,8 @@
   }
 }
 
-.login_button.active {
+.login_button:active {
   background-color: #4e8e6d85;
   transform: translateY(2px, 2px);
+  color: #fff;
 }

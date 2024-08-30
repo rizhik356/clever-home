@@ -1,6 +1,5 @@
-import LoginButton from '../../../ui/LoginButton/LoginButton'
-import LoginInput from '../../../ui/LoginInput/LoginInput'
 import style from '../scss/style.module.scss'
+import Form from './Form'
 
 const Main = () => {
   return (
@@ -12,9 +11,7 @@ const Main = () => {
         <div
           className={`${style['login_body']} ${style['login_container_inner']}`}
         >
-          <LoginInput name="login" placeholder="Логин" />
-          <LoginInput name="password" placeholder="Пароль" type="password" />
-          <LoginButton name="ВОЙТИ" />
+          <Form />
         </div>
       </div>
     </div>
