@@ -1,12 +1,9 @@
 import axios from 'axios'
 import { FormValues } from '../../Types/Form'
 
-const postLoginData = (data: FormValues) => {
-  try {
-    axios.post('/sigin', data)
-  } catch (err) {
-    console.log(err)
-  }
+const postLoginData = async (data: FormValues) => {
+  const response = await axios.post('/sigin', data)
+  return response.data
 }
 
 export default postLoginData

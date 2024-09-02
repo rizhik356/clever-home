@@ -17,9 +17,36 @@
   color: #fff;
   transition: all 0.6s;
   position: relative;
-  span {
-    transition: all 0.6s;
-    letter-spacing: 1px;
+
+  .span_div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    .loader {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-block;
+      border-top: 3px solid #fff;
+      border-right: 3px solid transparent;
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    .span_name {
+      transition: all 0.6s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
   }
 }
 
@@ -72,14 +99,19 @@
   background-color: #fff;
   transition: all 0.6s;
 
-  span {
+  .span_name {
     letter-spacing: 3px;
     color: #9b9b9b;
+  }
+  .loader {
+    border-color: #9b9b9b;
   }
 }
 
 .login_button:active {
   background-color: #4e8e6d85;
   transform: translateY(2px, 2px);
-  color: #fff;
+  .span_name {
+    color: #fff;
+  }
 }
