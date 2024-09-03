@@ -4,22 +4,44 @@ import { Field } from 'formik'
 import { useState } from 'react'
 
 const LoginInput = (props: Props) => {
-  const { name, placeholder, type = 'input', hasError, icon } = props
+  const {
+    name,
+    placeholder,
+    type = 'input',
+    hasError,
+    icon,
+    secondIcon,
+  } = props
 
-  const [isInputFocused, setIsInputFocused] = useState(false)
+  const [htmlType, setHtmlType] = useState<string>(type)
 
-  const inputStyles =
-    icon && isInputFocused
-      ? `${styles['form__field']} ${styles['form__field_with_icon']}`
-      : styles['form__field']
+  const inputStyles = icon
+    ? `${styles['form__field']} ${styles['form__field_with_icon']}`
+    : styles['form__field']
+
+  const handleChangeShownPassword = (htmlType: string) => {
+    const newHtmlType = htmlType !== 'password' ? 'password' : 'text'
+    setHtmlType(newHtmlType)
+  }
+
+  const currentIcon = (type: string, htmlType: string) => {
+    return type === htmlType ? icon : secondIcon
+  }
 
   return (
     <div className={styles['form__group']}>
-      {icon && isInputFocused && <span className={styles['icon']}>{icon}</span>}
+      {icon && (
+        <button className={styles['input_btn']} type="button">
+          <span
+            className={styles['icon']}
+            onClick={() => handleChangeShownPassword(htmlType)}
+          >
+            {currentIcon(type, htmlType)}
+          </span>
+        </button>
+      )}
       <Field
-        onFocus={() => setIsInputFocused(true)}
-        onBlur={() => setIsInputFocused(false)}
-        type={type}
+        type={htmlType}
         className={
           hasError
             ? `${inputStyles} ${styles['form__field_error']}`
@@ -28,7 +50,6 @@ const LoginInput = (props: Props) => {
         placeholder={placeholder}
         name={name}
         required
-        Input
       />
       <label
         htmlFor={name}

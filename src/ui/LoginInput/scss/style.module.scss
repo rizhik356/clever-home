@@ -9,6 +9,14 @@ $gray: #9b9b9b;
   width: 70%;
 }
 
+.icon {
+  transform: translateY(-50%);
+  color: $white;
+  font-size: 1.4rem;
+  transition: 0.6s;
+  cursor: pointer;
+}
+
 .form__field {
   font-family: inherit;
   width: 100%;
@@ -53,6 +61,11 @@ $gray: #9b9b9b;
     color: $primary;
     font-weight: 700;
   }
+
+  .icon {
+    color: $secondary;
+  }
+
   padding-bottom: 6px;
   font-weight: 600;
   border-width: 3px;
@@ -75,18 +88,17 @@ $gray: #9b9b9b;
   border-image-slice: 1;
 }
 
-.icon {
-  position: absolute;
-  left: 93%;
-  top: 70%;
-  transform: translateY(-50%);
-  color: $secondary;
-  font-size: 1.4rem;
-  pointer-events: none;
-  transition: 0.6s;
-}
-
 .form__field_with_icon {
   width: calc(100% - 3rem);
   padding-right: 3rem;
+}
+
+.input_btn {
+  position: absolute;
+  left: 93%;
+  top: 50%;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
 }

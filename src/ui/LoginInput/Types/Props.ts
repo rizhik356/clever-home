@@ -4,4 +4,5 @@ export type Props = {
   type?: string
   hasError?: boolean | ''
   icon?: JSX.Element
+  secondIcon?: JSX.Element
 }

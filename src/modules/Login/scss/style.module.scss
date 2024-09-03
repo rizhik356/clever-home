@@ -7,13 +7,17 @@
   align-items: center;
 }
 
-.login_container {
+.login_container,
+.login_container_back {
   display: flex;
   justify-content: space-between;
   background-color: aliceblue;
+  backface-visibility: hidden;
   width: 60%;
   height: 90vh;
   background-color: #fff;
+  transition: transform 0.6s linear;
+  position: relative;
 }
 
 .login_container_inner {
@@ -46,4 +50,29 @@
   color: #f52720;
   transition: 0.6s;
   letter-spacing: 1px;
+}
+
+.span_remember_pswrd {
+  color: #66a182;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.remember_pswrd {
+  color: #5e5d5d;
+  letter-spacing: 1px;
+}
+
+.span_remember_pswrd:hover {
+  color: #666;
+}
+
+.always_div_for_error {
+  height: 24px;
+}
+
+.steps_div {
+  width: 90%;
+  align-self: center;
+  display: flex;
 }

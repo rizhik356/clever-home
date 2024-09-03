@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify'
 import { useState } from 'react'
 import { FormValues } from '../Types/Form'
 import { FaRegEye } from 'react-icons/fa'
+import { FaRegEyeSlash } from 'react-icons/fa'
 
 const Form = () => {
   const [loginError, setLoginError] = useState(false)
@@ -54,13 +55,20 @@ const Form = () => {
               type="password"
               hasError={hasError('password', errors, touched) || loginError}
               icon={<FaRegEye />}
+              secondIcon={<FaRegEyeSlash />}
             />
             <LoginButton name="войти" type="submit" loading={loading} />
-            {loginError ? (
-              <div className={style['error_login_form']}>
-                Неправильный логин или пароль
-              </div>
-            ) : null}
+            <span className={style['remember_pswrd']}>
+              Забыли{' '}
+              <span className={style['span_remember_pswrd']}>пароль?</span>
+            </span>
+            <div className={style['always_div_for_error']}>
+              {loginError ? (
+                <span className={style['error_login_form']}>
+                  Неправильный логин или пароль
+                </span>
+              ) : null}
+            </div>
           </DefaultForm>
           <ToastContainer />
         </>
