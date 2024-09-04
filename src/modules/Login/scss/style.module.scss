@@ -75,4 +75,34 @@
   width: 90%;
   align-self: center;
   display: flex;
+  height: 100%;
+  margin-top: 20%;
+  flex-direction: column;
+}
+
+.reset_password_form {
+  width: 110%;
+  align-self: center;
+  gap: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 30%;
+  .reset_password_desc {
+    color: #666666;
+    width: 70%;
+    letter-spacing: 1px;
+    text-align: center;
+    transition: 0.6s;
+  }
+}
+
+.another_email {
+  color: #66a182;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.another_email:hover {
+  color: #666;
 }

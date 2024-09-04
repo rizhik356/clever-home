@@ -8,11 +8,13 @@ import postLoginData from './api/postLoginData'
 import { errorNotification } from '../../../ui/notifications'
 import { ToastContainer } from 'react-toastify'
 import { useState } from 'react'
-import { FormValues } from '../Types/Form'
+import { FormProps, FormValues } from '../Types/Form'
 import { FaRegEye } from 'react-icons/fa'
 import { FaRegEyeSlash } from 'react-icons/fa'
 
-const Form = () => {
+const Form = (props: FormProps) => {
+  const { changeState } = props
+
   const [loginError, setLoginError] = useState(false)
   const [loading, setLoading] = useState(false)
 
@@ -59,8 +61,13 @@ const Form = () => {
             />
             <LoginButton name="войти" type="submit" loading={loading} />
             <span className={style['remember_pswrd']}>
-              Забыли{' '}
-              <span className={style['span_remember_pswrd']}>пароль?</span>
+              Забыли&nbsp;
+              <span
+                className={style['span_remember_pswrd']}
+                onClick={() => changeState('passwordReset')}
+              >
+                пароль?
+              </span>
             </span>
             <div className={style['always_div_for_error']}>
               {loginError ? (
