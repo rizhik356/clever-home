@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import style from '../scss/style.module.scss'
 import Form from './Form'
 import PasswordReset from './PasswordReset'
+import SignUp from './Signup'
 
 const Main = () => {
   const [currentStatePage, setCurrentStatePage] = useState('login')
@@ -13,6 +14,7 @@ const Main = () => {
   const stateByKey: StateByKey = {
     login: <Form changeState={setCurrentStatePage} />,
     passwordReset: <PasswordReset changeState={setCurrentStatePage} />,
+    signup: <SignUp changeState={setCurrentStatePage} />,
   }
 
   useEffect(() => {

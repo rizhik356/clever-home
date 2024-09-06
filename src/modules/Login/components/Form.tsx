@@ -48,7 +48,7 @@ const Form = (props: FormProps) => {
           <DefaultForm className={style['login_body_form']} noValidate>
             <LoginInput
               name="login"
-              placeholder="Логин"
+              placeholder="Логин / Email"
               hasError={hasError('login', errors, touched) || loginError}
             />
             <LoginInput
@@ -66,7 +66,14 @@ const Form = (props: FormProps) => {
                 className={style['span_remember_pswrd']}
                 onClick={() => changeState('passwordReset')}
               >
-                пароль?
+                пароль?&nbsp;
+              </span>
+              <span>/</span>
+              <span
+                className={style['span_remember_pswrd']}
+                onClick={() => changeState('signup')}
+              >
+                &nbsp;Регистрация
               </span>
             </span>
             <div className={style['always_div_for_error']}>
