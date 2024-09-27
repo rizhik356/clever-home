@@ -1,7 +1,7 @@
 import styles from './scss/style.module.scss'
 import { Props } from './Types/Props'
 import { Field } from 'formik'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 const LoginInput = (props: Props) => {
   const {
@@ -22,6 +22,10 @@ const LoginInput = (props: Props) => {
   }
 
   const [htmlType, setHtmlType] = useState<string>(type)
+
+  useEffect(() => {
+    setHtmlType(type)
+  }, [type])
 
   const inputStyles = icon
     ? `${styles['form__field']} ${styles['form__field_with_icon']}`

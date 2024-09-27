@@ -1,22 +1,23 @@
-import LoginButton from '../../../ui/LoginButton/LoginButton'
-import LoginInput from '../../../ui/LoginInput/LoginInput'
+import LoginButton from '../../../../../ui/LoginButton/LoginButton'
+import LoginInput from '../../../../../ui/LoginInput/LoginInput'
 import { Form as DefaultForm, Formik } from 'formik'
-import style from '../scss/style.module.scss'
-import hasError from '../helpers/hasError'
-import SigninSchema from '../ValidateSchemas/SiginSchema'
-import postLoginData from './api/postLoginData'
-import { errorNotification } from '../../../ui/notifications'
+import style from '../../../scss/style.module.scss'
+import hasError from '../../../helpers/hasError'
+import SigninSchema from '../../../ValidateSchemas/SiginSchema'
+import postLoginData from '../api/postLoginData'
+import { errorNotification } from '../../../../../ui/notifications'
 import { ToastContainer } from 'react-toastify'
 import { useState } from 'react'
-import { FormProps, FormValues } from '../Types/Form'
+import { FormValues } from '../../../Types/Form'
 import { FaRegEye } from 'react-icons/fa'
 import { FaRegEyeSlash } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 
-const Form = (props: FormProps) => {
-  const { changeState } = props
-
+const Main = () => {
   const [loginError, setLoginError] = useState(false)
   const [loading, setLoading] = useState(false)
+
+  const navigate = useNavigate()
 
   const handleSubmit = (values: FormValues) => {
     setLoading(true)
@@ -64,14 +65,14 @@ const Form = (props: FormProps) => {
               Забыли&nbsp;
               <span
                 className={style['span_remember_pswrd']}
-                onClick={() => changeState('passwordReset')}
+                onClick={() => navigate('/password-reset')}
               >
                 пароль?&nbsp;
               </span>
               <span>/</span>
               <span
                 className={style['span_remember_pswrd']}
-                onClick={() => changeState('signup')}
+                onClick={() => navigate('signup')}
               >
                 &nbsp;Регистрация
               </span>
@@ -91,4 +92,4 @@ const Form = (props: FormProps) => {
   )
 }
 
-export default Form
+export default Main

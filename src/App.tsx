@@ -1,5 +1,5 @@
 import { ConfigProvider } from 'antd'
-import LoginPage from './pages/Login/LoginPage'
+import CreateRoutes from './constants/routes/CreateRoutes'
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         },
       }}
     >
-      <LoginPage />
+      <CreateRoutes />
     </ConfigProvider>
   )
 }

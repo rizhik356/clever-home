@@ -9,11 +9,17 @@ export type FormProps = {
 }
 
 type FormStep = {
-  description: string
+  description?: string
   inputName: string
   inputPlaceholder: string
   validation: ObjectSchema<AnyObject>
   hasSpan?: boolean
+  hasSecondInput?: boolean
+  secondInputName?: string
+  secondInputPlaceholder?: string
+  inputIcon?: JSX.Element
+  inputSecondIcon?: JSX.Element
+  inputType?: string
 }
 
 export type FormSteps = { [key: number]: FormStep }

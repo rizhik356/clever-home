@@ -1,9 +1,9 @@
-import { FormSteps } from '../Types/Form'
+import { FormSteps } from '../../../Types/Form'
 import {
   PasswordResetCodeSchema,
   PasswordResetEmailSchema,
   PasswordResetPasswordSchema,
-} from '../ValidateSchemas/SiginSchema'
+} from '../../../ValidateSchemas/SiginSchema'
 
 const formSteps: FormSteps = {
   0: {
@@ -26,6 +26,9 @@ const formSteps: FormSteps = {
     inputName: 'password',
     inputPlaceholder: 'Пароль',
     validation: PasswordResetPasswordSchema,
+    hasSecondInput: true,
+    secondInputName: 'confirmPassword',
+    secondInputPlaceholder: 'Повторите пароль',
   },
 }
 

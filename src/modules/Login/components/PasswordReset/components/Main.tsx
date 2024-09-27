@@ -1,27 +1,32 @@
 import { useEffect, useState } from 'react'
-import LoginInput from '../../../ui/LoginInput/LoginInput'
-import style from '../scss/style.module.scss'
+import LoginInput from '../../../../../ui/LoginInput/LoginInput'
+import style from '../../../scss/style.module.scss'
 import { Steps } from 'antd'
-import {
-  Form as DefaultForm,
-  Formik,
-  FormikErrors,
-  FormikHelpers,
-} from 'formik'
-import LoginButton from '../../../ui/LoginButton/LoginButton'
+import { Form as DefaultForm, Formik, FormikHelpers } from 'formik'
+import LoginButton from '../../../../../ui/LoginButton/LoginButton'
 import formSteps from '../sources/formSteps'
-import { FormProps, FormValues } from '../Types/Form'
-import hasError from '../helpers/hasError'
+import { FormValues } from '../../../Types/Form'
+import hasError from '../../../helpers/hasError'
 import stepItems from '../sources/stepsItems'
+import FooterErrors from '../../FooterErrors'
+import { useNavigate } from 'react-router-dom'
 
-const PasswordReset = (props: FormProps) => {
-  const { changeState } = props
-
+const Main = () => {
   const [currentState, setCurrentState] = useState<number>(0)
   const [loading, setLoading] = useState(false)
 
-  const { description, inputName, inputPlaceholder, validation, hasSpan } =
-    formSteps[currentState]
+  const navigate = useNavigate()
+
+  const {
+    description,
+    inputName,
+    inputPlaceholder,
+    validation,
+    hasSpan,
+    hasSecondInput,
+    secondInputName,
+    secondInputPlaceholder,
+  } = formSteps[currentState]
 
   useEffect(() => {
     setCurrentState(0)
@@ -36,12 +41,17 @@ const PasswordReset = (props: FormProps) => {
     values: FormValues,
     {
       resetForm,
-    }: FormikHelpers<{ email: string; code: string; password: string }>,
+    }: FormikHelpers<{
+      email: string
+      code: string
+      password: string
+      confirmPassword: string
+    }>,
   ) => {
     if (currentState !== stepItems.length - 1) {
       setCurrentState(currentState + 1)
     } else {
-      changeState('login')
+      navigate('/')
     }
     resetForm()
   }
@@ -51,7 +61,12 @@ const PasswordReset = (props: FormProps) => {
       <div className={style['steps_div']}>
         <Steps current={currentState} items={stepItems} />
         <Formik
-          initialValues={{ email: '', code: '', password: '' }}
+          initialValues={{
+            email: '',
+            code: '',
+            password: '',
+            confirmPassword: '',
+          }}
           onSubmit={handleSubmit}
           validationSchema={validation}
           validateOnChange={false}
@@ -67,26 +82,27 @@ const PasswordReset = (props: FormProps) => {
                 placeholder={inputPlaceholder}
                 hasError={hasError(inputName, errors, touched)}
               />
+              {hasSecondInput && (
+                <LoginInput
+                  name={secondInputName as string}
+                  placeholder={secondInputPlaceholder as string}
+                  hasError={hasError(
+                    secondInputName as string,
+                    errors,
+                    touched,
+                  )}
+                />
+              )}
               <LoginButton name="Отправить" type="submit" loading={loading} />
-              {hasSpan ? (
+              {hasSpan && (
                 <span
                   className={style['another_email']}
                   onClick={() => handleBack(resetForm)}
                 >
                   Другая почта?
                 </span>
-              ) : null}
-              <span className={style['error_login_form']}>
-                {
-                  errors[
-                    inputName as keyof FormikErrors<{
-                      email: string
-                      code: string
-                      password: string
-                    }>
-                  ]
-                }
-              </span>
+              )}
+              <FooterErrors errors={errors} />
             </DefaultForm>
           )}
         </Formik>
@@ -97,4 +113,4 @@ const PasswordReset = (props: FormProps) => {
   )
 }
 
-export default PasswordReset
+export default Main

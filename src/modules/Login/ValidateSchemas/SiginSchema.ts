@@ -19,16 +19,19 @@ const PasswordResetPasswordSchema = Yup.object().shape({
   password: Yup.string()
     .required('Пароль обязателен')
     .min(6, 'Пароль должен содержать минимум 6 символов'),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref('password'), undefined], 'Пароли не совпадают')
+    .required('Подтверждение пароля обязательно'),
 })
 
-const SignupSchema = Yup.object().shape({
+const SignupLoginSchema = Yup.object().shape({
   login: Yup.string()
     .required('Логин обязателен')
     .min(2, 'Логин должен содержать минимум 2 символа')
     .max(20, 'Логин не должен превышать 50 символов'),
-  email: Yup.string()
-    .required(' Email обязателен')
-    .email('Введите корректный email'),
+})
+
+const SignupPasswordSchema = Yup.object().shape({
   password: Yup.string()
     .required('Пароль обязателен')
     .min(8, 'Пароль должен содержать минимум 8 символов')
@@ -40,11 +43,19 @@ const SignupSchema = Yup.object().shape({
     .required('Подтверждение пароля обязательно'),
 })
 
+const SignUpEmailSchema = Yup.object().shape({
+  email: Yup.string()
+    .required(' Email обязателен')
+    .email('Введите корректный email'),
+})
+
 export {
   PasswordResetEmailSchema,
   PasswordResetCodeSchema,
   PasswordResetPasswordSchema,
-  SignupSchema,
+  SignupLoginSchema,
+  SignupPasswordSchema,
+  SignUpEmailSchema,
 }
 
 export default SigninSchema
