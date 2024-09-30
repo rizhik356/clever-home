@@ -4,6 +4,9 @@ const routes = {
     sign_up: '/signup',
     password_reset: '/password-reset',
   },
+  home: {
+    main: '/home'
+  }
 }
 
 export default routes

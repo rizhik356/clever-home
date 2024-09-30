@@ -1,16 +1,16 @@
 import { Routes, BrowserRouter, Route } from 'react-router-dom'
 import routes from './groups/index'
-import LoginWrapper from '../../wrappers/LoginWrapper'
+import SelectWrapper from '../../wrappers/SelectWrapper'
 
 const CreateRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {routes().map(({ component, route }) => {
+        {routes().map(({ component, route, wrapper }) => {
           return (
             <Route
               path={route}
-              element={<LoginWrapper>{component}</LoginWrapper>}
+              element={SelectWrapper({component, wrapper})}
               key={route}
             />
           )

@@ -11,16 +11,19 @@ const Login = () => {
       title: 'Вход',
       component: <SignInPage />,
       route: login.sign_in,
+      wrapper: 'login'
     },
     {
       title: 'Регистрация',
       component: <SignUpPage />,
       route: login.sign_up,
+      wrapper: 'login'
     },
     {
       title: 'Восстановление пароля',
       component: <PasswordResetPage />,
       route: login.password_reset,
+      wrapper: 'login'
     },
   ]
 }
