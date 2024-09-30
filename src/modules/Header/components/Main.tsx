@@ -1,24 +1,24 @@
 import { ReactNode } from 'react'
 import style from '../scss/style.module.scss'
 import { Link } from 'react-router-dom'
-import UserCard from '../../../ui/UserCard/UserCard'
+import UserDropDown from '../../../ui/UserDropDown/UserDropDown'
 
-const Header = ({children} : {children: ReactNode}) => {
-return (
+const Header = ({ children }: { children: ReactNode }) => {
+  return (
     <>
-    <div className={style['header_div']}>
+      <div className={style['header_div']}>
         <span>
-            <Link to='/home'> <span className={style['header_froggy']}>Froggy</span> House</Link>
+          <Link to="/home">
+            <span className={style['header_froggy']}>Froggy</span> House
+          </Link>
         </span>
         <div>
-        <UserCard />
-        
+          <UserDropDown />
         </div>
-
-    </div>
-        {children}
+      </div>
+      {children}
     </>
-)
+  )
 }
 
 export default Header

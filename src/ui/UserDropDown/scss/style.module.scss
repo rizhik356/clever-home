@@ -1,0 +1,8 @@
+.avatar {
+  cursor: pointer;
+  transition: 0.6s;
+}
+
+.avatar:hover {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3); //ы Тень с смещением 1px
+}
