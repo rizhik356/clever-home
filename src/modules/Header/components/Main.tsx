@@ -1,9 +1,8 @@
-import { ReactNode } from 'react'
 import style from '../scss/style.module.scss'
 import { Link } from 'react-router-dom'
 import UserDropDown from '../../../ui/UserDropDown/UserDropDown'
 
-const Header = ({ children }: { children: ReactNode }) => {
+const Header = () => {
   return (
     <>
       <div className={style['header_div']}>
@@ -16,7 +15,6 @@ const Header = ({ children }: { children: ReactNode }) => {
           <UserDropDown />
         </div>
       </div>
-      {children}
     </>
   )
 }
