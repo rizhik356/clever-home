@@ -69,3 +69,20 @@
   justify-content: center;
   flex-direction: column;
 }
+
+@media (max-width: 900px) {
+  .login_container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .login_container_inner {
+    width: 100%;
+  }
+}
+
+@media(max-width: 600px) {
+  .login_container {
+    width: 90%;
+  }
+}

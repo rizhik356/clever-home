@@ -40,7 +40,7 @@ const Main = () => {
   }
 
   return (
-    <div className={style['steps_div']}>
+    <div className={`${style['steps_div']} steps`}>
       <Steps current={currentState} items={stepItems} />
       <Formik
         initialValues={{
