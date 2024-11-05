@@ -42,3 +42,13 @@ body,
     }
   }
 }
+
+@media (max-width: 576px) {
+  .steps {
+    .ant-steps {
+      flex-direction: row;
+      .ant-steps-item {
+      }
+    }
+  }
+}
