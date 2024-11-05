@@ -6,4 +6,7 @@ export type Props = {
     icon?: JSX.Element
     size?: number
   }
+  setCurrentItem: (key: string) => void
+  currentItem: string | undefined
+  pathname: string
 }

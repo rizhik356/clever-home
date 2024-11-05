@@ -5,8 +5,11 @@ const routes = {
     password_reset: '/password-reset',
   },
   home: {
-    main: '/home'
-  }
+    main: '/home',
+  },
+  devices: {
+    main: '/devices',
+  },
 }
 
 export default routes

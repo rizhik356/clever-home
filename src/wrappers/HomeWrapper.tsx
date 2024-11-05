@@ -13,7 +13,9 @@ const HomeWrapper = ({ children }: Props) => {
       <Header />
       <div className={style['menu_container']}>
         <Menu />
-        <div className={style['main_container']}>{children}</div>
+        <div className={style['main_container']}>
+          <div className={style['inner_main_container']}>{children}</div>
+        </div>
       </div>
     </div>
   )
