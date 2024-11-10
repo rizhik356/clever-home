@@ -27,6 +27,10 @@ const dropDownItems: MenuProps['items'] = [
         label: 'Выйти',
         key: 'exit',
         icon: <IoExitOutline size={20} />,
+        onClick: () => {
+          localStorage.removeItem('token')
+          window.location.pathname = '/'
+        }
       },
 ]
 
