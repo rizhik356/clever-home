@@ -7,7 +7,7 @@ import SigninSchema from '../../../ValidateSchemas/SiginSchema'
 import postLoginData from '../api/postLoginData'
 import { errorNotification } from '../../../../../ui/notifications'
 import { ToastContainer } from 'react-toastify'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FormValues } from '../../../Types/Form'
 import { FaRegEye } from 'react-icons/fa'
 import { FaRegEyeSlash } from 'react-icons/fa'
@@ -16,22 +16,35 @@ import { useNavigate } from 'react-router-dom'
 const Main = () => {
   const [loginError, setLoginError] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string>()
+
+  const token = localStorage.getItem('token')
+
+  useEffect(() => {
+    if (token) {
+      navigate('home')
+    }
+  }, [])
 
   const navigate = useNavigate()
 
   const handleSubmit = (values: FormValues) => {
     setLoading(true)
     postLoginData(values)
-      .then(() => {
+      .then((data) => {
+        localStorage.setItem('token', data.token)
         setLoginError(false)
+        navigate('home')
       })
       .catch((err) => {
-        return err.response.status !== 401
-          ? setLoginError(true)
-          : errorNotification(
-              'Произошла ошибка, пожалуйста, попробуйте позднее.',
-              'loginError',
-            )
+        console.log(err)
+        if (err?.response?.status === 401) {
+          setLoginError(true)
+          setErrorMessage(err?.response?.data?.message)
+        }  
+        else {
+          errorNotification('Произошла ошибка, пожалуйста, попробуйте позднее.')
+        }
       })
       .finally(() => {
         setLoading(false)
@@ -80,7 +93,7 @@ const Main = () => {
             <div className={style['always_div_for_error']}>
               {loginError ? (
                 <span className={style['error_login_form']}>
-                  Неправильный логин или пароль
+                  {errorMessage}
                 </span>
               ) : null}
             </div>
