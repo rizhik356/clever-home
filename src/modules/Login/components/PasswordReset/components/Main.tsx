@@ -2,14 +2,17 @@ import { useEffect, useState } from 'react'
 import LoginInput from '../../../../../ui/LoginInput/LoginInput'
 import style from '../../../scss/style.module.scss'
 import { Steps } from 'antd'
-import { Form as DefaultForm, Formik, FormikHelpers } from 'formik'
+import { Form as DefaultForm, Formik } from 'formik'
 import LoginButton from '../../../../../ui/LoginButton/LoginButton'
 import formSteps from '../sources/formSteps'
-import { FormValues } from '../../../Types/Form'
+import { FormikHelperValues, FormValues } from '../../../Types/Form'
 import hasError from '../../../helpers/hasError'
 import stepItems from '../sources/stepsItems'
 import FooterErrors from '../../FooterErrors'
 import { useNavigate } from 'react-router-dom'
+import { errorNotification } from '../../../../../ui/notifications.ts'
+import routes from '../../../../../constants/routes/routes.ts'
+import { ToastContainer } from 'react-toastify'
 
 const Main = () => {
   const [currentState, setCurrentState] = useState<number>(0)
@@ -26,6 +29,7 @@ const Main = () => {
     hasSecondInput,
     secondInputName,
     secondInputPlaceholder,
+    apiFunc
   } = formSteps[currentState]
 
   useEffect(() => {
@@ -37,29 +41,39 @@ const Main = () => {
     setCurrentState(0)
   }
 
-  const handleSubmit = (
-    values: FormValues,
-    {
-      resetForm,
-    }: FormikHelpers<{
-      email: string
-      code: string
-      password: string
-      confirmPassword: string
-    }>,
-  ) => {
+  const toFinishStep = ({ resetForm }: FormikHelperValues) => {
     if (currentState !== stepItems.length - 1) {
       setCurrentState(currentState + 1)
     } else {
-      navigate('/')
+      resetForm()
+      navigate(routes.login.sign_in)
     }
-    resetForm()
+  }
+
+  const handleSubmit = (
+    values: FormValues,
+      formik: FormikHelperValues,
+  ) => {
+  if (apiFunc) {
+    setLoading(true)
+    apiFunc(values)
+      .then(() => {
+        toFinishStep(formik)
+      })
+      .catch((err) => errorNotification(err?.response.message || 'Произошла ошибка! Попробуйте позднее...'))
+      .finally(() => {
+        setLoading(false)
+      })
+  }
+  else {
+    toFinishStep(formik)
+  }
   }
 
   return (
     <>
       <div className={style['steps_div']}>
-        <Steps current={currentState} items={stepItems} />
+        <Steps current={currentState} items={stepItems} responsive={false} />
         <Formik
           initialValues={{
             email: '',
@@ -106,6 +120,7 @@ const Main = () => {
             </DefaultForm>
           )}
         </Formik>
+        <ToastContainer />
       </div>
 
       <div className={style['login_body_form']}></div>

@@ -1,8 +1,9 @@
-import axios from 'axios'
 import { FormValues } from '../../../Types/Form'
+import apiUrls from '../../../../../api/apiUrls.ts'
+import axiosInstance from '../../../../../api/axiosInstance.ts'
 
 const postLoginData = async (data: FormValues) => {
-  const response = await axios.post('http://localhost:8080/sigin', data)
+  const response = await axiosInstance.post(apiUrls.login.sign_in, data)
   return response.data
 }
 

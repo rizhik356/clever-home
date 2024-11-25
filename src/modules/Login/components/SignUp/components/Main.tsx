@@ -4,12 +4,15 @@ import LoginButton from '../../../../../ui/LoginButton/LoginButton'
 import { Form, Formik } from 'formik'
 import hasError from '../../../helpers/hasError'
 import { useState } from 'react'
-import { FormValues } from '../../../Types/Form'
+import { FinalData, FormValues } from '../../../Types/Form'
 import { useNavigate } from 'react-router-dom'
 import FooterErrors from '../../FooterErrors'
 import stepItems from '../sources/stepItems'
 import { Steps } from 'antd'
 import formSteps from '../sources/formSteps'
+import routes from '../../../../../constants/routes/routes.ts'
+import { errorNotification } from '../../../../../ui/notifications.ts'
+import { ToastContainer } from 'react-toastify'
 
 const Main = () => {
   const [currentState, setCurrentState] = useState(0)
@@ -27,21 +30,39 @@ const Main = () => {
     inputIcon,
     inputSecondIcon,
     inputType,
+    apiFunc
   } = formSteps[currentState]
 
   const navigate = useNavigate()
 
-  const handleSubmit = (values: FormValues) => {
+  const toFinishStep = (data?: unknown) => {
+    console.log(data)
     if (currentState !== stepItems.length - 1) {
       setCurrentState(currentState + 1)
     } else {
-      navigate('/')
+      const finalData = data as FinalData
+      localStorage.setItem('token', finalData.token)
+      navigate(routes.login.sign_in)
+    }
+  }
+
+  const handleSubmit = (values: FormValues) => {
+    console.log(apiFunc)
+    if (apiFunc) {
+      apiFunc(values).then((data) => {
+        toFinishStep(data)
+      }).catch((err) => {
+        errorNotification(err?.response?.data?.message || 'Произошла ошибка! Попробуйте позднее...')
+      })
+        .finally(() => {setLoading(false)})
+    } else {
+      toFinishStep()
     }
   }
 
   return (
     <div className={`${style['steps_div']} steps`}>
-      <Steps current={currentState} items={stepItems} />
+      <Steps current={currentState} items={stepItems} responsive={false} />
       <Formik
         initialValues={{
           login: '',
@@ -94,6 +115,7 @@ const Main = () => {
           )
         }}
       </Formik>
+      <ToastContainer />
     </div>
   )
 }
