@@ -4,7 +4,7 @@ import { FormValues } from '../../../Types/Form.ts'
 
 const isLoginEmpty = async ({ login }: FormValues) => {
   const response = await axiosInstance.get(
-    `${apiUrls.login.check_login}/${login}`,
+    `${apiUrls.users.check_login}/${login}`,
   )
   return response.data
 }

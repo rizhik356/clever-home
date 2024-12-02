@@ -1,10 +1,13 @@
 import axiosInstance from '../../../../../api/axiosInstance.ts'
 import apiUrls from '../../../../../api/apiUrls.ts'
-import { FormValues } from '../../../Types/Form.ts'
+import { ApiFuncProps } from '../../../Types/Form.ts'
 
-const postVerificationCode = async ({code}: FormValues) => {
-    const response = await axiosInstance.post(apiUrls.login.check_code, {code})
+const postVerificationCode = async ({ code, id }: ApiFuncProps) => {
+  const response = await axiosInstance.post(apiUrls.users.confirm_code, {
+    code: Number(code),
+    id,
+  })
   return response.data
- }
+}
 
-export default postVerificationCode;
+export default postVerificationCode

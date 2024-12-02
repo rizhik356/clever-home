@@ -9,7 +9,16 @@ export type FormProps = {
   changeState: (arg: string) => void
 }
 
-export type FormFunc = (data: FormValues) => Promise<unknown>
+export type RequestState = {
+  id: number | null
+  token: string | null
+}
+
+export type ApiFuncProps = {
+  [key: string]: string | number | null
+}
+
+export type FormFunc = (data: ApiFuncProps) => Promise<unknown>
 
 export type FormikHelperValues = FormikHelpers<{
   email: string
