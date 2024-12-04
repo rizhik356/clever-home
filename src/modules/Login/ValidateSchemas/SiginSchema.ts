@@ -18,7 +18,10 @@ const PasswordResetCodeSchema = Yup.object().shape({
 const PasswordResetPasswordSchema = Yup.object().shape({
   password: Yup.string()
     .required('Пароль обязателен')
-    .min(6, 'Пароль должен содержать минимум 6 символов'),
+    .min(8, 'Пароль должен содержать минимум 8 символов')
+    .matches(/[A-Z]/, 'Пароль должен содержать хотя бы одну заглавную букву')
+    .matches(/[a-z]/, 'Пароль должен содержать хотя бы одну строчную букву')
+    .matches(/[0-9]/, 'Пароль должен содержать хотя бы одну цифру'),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), undefined], 'Пароли не совпадают')
     .required('Подтверждение пароля обязательно'),

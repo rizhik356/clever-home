@@ -24,6 +24,14 @@ const formSteps: FormSteps = {
     apiFunc: isEmailEmpty
   },
   2: {
+    description:
+      'Пожалуйста, введите код подтвреждения, отправленный вам на почту',
+    inputName: 'code',
+    inputPlaceholder: 'Код подтверждения',
+    validation: PasswordResetCodeSchema,
+    hasSpan: true,
+  },
+  3: {
     inputName: 'password',
     inputType: 'password',
     inputPlaceholder: 'Пароль',
@@ -35,15 +43,7 @@ const formSteps: FormSteps = {
     secondInputPlaceholder: 'Повторите пароль',
     apiFunc: addNewUser
   },
-  3: {
-    description:
-      'Пожалуйста, введите код подтвреждения, отправленный вам на почту',
-    inputName: 'code',
-    inputPlaceholder: 'Код подтверждения',
-    validation: PasswordResetCodeSchema,
-    hasSpan: true,
 
-  },
 }
 
 export default formSteps
