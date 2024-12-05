@@ -12,21 +12,26 @@ import { FormValues } from '../../../Types/Form'
 import { FaRegEye } from 'react-icons/fa'
 import { FaRegEyeSlash } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
+import routes from '../../../../../constants/routes/routes.ts'
+import { useDispatch } from 'react-redux'
+import { setToken } from '../../../slices/authSlice.ts'
 
 const Main = () => {
   const [loginError, setLoginError] = useState(false)
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string>()
 
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
   const token = localStorage.getItem('token')
 
   useEffect(() => {
     if (token) {
-      navigate('home')
+      dispatch(setToken(token))
+      navigate(routes.home.main)
     }
   }, [])
-
-  const navigate = useNavigate()
 
   const handleSubmit = (values: FormValues) => {
     setLoading(true)
@@ -34,15 +39,13 @@ const Main = () => {
       .then((data) => {
         localStorage.setItem('token', data.token)
         setLoginError(false)
-        navigate('home')
+        navigate(routes.home.main)
       })
       .catch((err) => {
-        console.log(err)
         if (err?.response?.status === 401) {
           setLoginError(true)
           setErrorMessage(err?.response?.data?.message)
-        }  
-        else {
+        } else {
           errorNotification('Произошла ошибка, пожалуйста, попробуйте позднее.')
         }
       })

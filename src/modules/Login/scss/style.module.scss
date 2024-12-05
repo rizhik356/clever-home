@@ -36,8 +36,9 @@
   align-self: center;
   display: flex;
   height: 100%;
-  margin-top: 20%;
   flex-direction: column;
+  justify-content: space-around;
+  gap: 2%;
 }
 
 .reset_password_form {
@@ -48,7 +49,6 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  margin-top: 30%;
   .reset_password_desc {
     color: #666666;
     width: 70%;

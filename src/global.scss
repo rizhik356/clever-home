@@ -22,23 +22,26 @@ body,
   margin: 0;
 }
 
-.finish_step {
-  .ant-steps-item-icon {
-    background-color: #4e8e6d85 !important;
-    border: none !important;
+.steps {
+overflow: hidden;
+  .finish_step {
+    .ant-steps-item-icon {
+      background-color: #4e8e6d85 !important;
+      border: none !important;
+    }
+
+    .ant-steps-item-title::after {
+      background-color: #4e8e6d85 !important;
+    }
   }
 
-  .ant-steps-item-title::after {
-    background-color: #4e8e6d85 !important;
-  }
-}
-
-.ant-steps-item-finish {
-  .ant-steps-item-icon {
-    background-color: #4e8e6d85 !important;
-    border: none;
-    .ant-steps-icon {
-      color: #fff !important;
+  .ant-steps-item-finish {
+    .ant-steps-item-icon {
+      background-color: #4e8e6d85 !important;
+      border: none;
+      .ant-steps-icon {
+        color: #fff !important;
+      }
     }
   }
 }

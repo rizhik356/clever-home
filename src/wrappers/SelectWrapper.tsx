@@ -18,7 +18,6 @@ const wraperByKey: WraperByKey = {
 }
 
 const SelectWrapper = ({ component, wrapper }: Props) => {
-  console.log(wrapper)
   return wraperByKey[wrapper](component)
 }
 

@@ -1,5 +1,5 @@
-import axiosInstance from '../../../../../api/axiosInstance.ts'
-import apiUrls from '../../../../../api/apiUrls.ts'
+import axiosInstance from '../../../../../shared/api/axiosInstance.ts'
+import apiUrls from '../../../../../shared/api/apiUrls.ts'
 import { ApiFuncProps } from '../../../Types/Form.ts'
 
 const postVerificationCode = async ({ password, token, id }: ApiFuncProps) => {

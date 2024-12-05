@@ -1,5 +1,5 @@
-import apiUrls from '../../../../../api/apiUrls.ts'
-import axiosInstance from '../../../../../api/axiosInstance.ts'
+import apiUrls from '../../../../../shared/api/apiUrls.ts'
+import axiosInstance from '../../../../../shared/api/axiosInstance.ts'
 import { ApiFuncProps } from '../../../Types/Form.ts'
 
 const isLoginEmpty = async ({ login }: ApiFuncProps) => {

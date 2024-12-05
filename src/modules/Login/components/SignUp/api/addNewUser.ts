@@ -1,5 +1,5 @@
-import apiUrls from '../../../../../api/apiUrls.ts'
-import axiosInstance from '../../../../../api/axiosInstance.ts'
+import apiUrls from '../../../../../shared/api/apiUrls.ts'
+import axiosInstance from '../../../../../shared/api/axiosInstance.ts'
 import { ApiFuncProps } from '../../../Types/Form.ts'
 
 const addNewUser = async ({ login, password, email, id }: ApiFuncProps) => {
@@ -7,7 +7,7 @@ const addNewUser = async ({ login, password, email, id }: ApiFuncProps) => {
     login,
     password,
     email,
-    id
+    id,
   })
   return response.data
 }

@@ -32,6 +32,7 @@ const Main = () => {
   useEffect(() => {
     setCurrentState(0)
   }, [])
+  useEffect(() => {}, [])
 
   const handleBack = (resetForm: () => void) => {
     resetForm()
