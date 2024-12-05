@@ -7,8 +7,9 @@ import {
 } from '../../../ValidateSchemas/SiginSchema'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa'
 import isLoginEmpty from '../api/isLoginEmpty.ts'
-import isEmailEmpty from '../api/isEmailEmpty.ts'
+import confirmEmail from '../api/confirmEmail.ts'
 import addNewUser from '../api/addNewUser.ts'
+import postVerificationCode from '../api/postVerificationCode.ts'
 
 const formSteps: FormSteps = {
   0: {
@@ -21,7 +22,7 @@ const formSteps: FormSteps = {
     inputName: 'email',
     inputPlaceholder: 'Email',
     validation: SignUpEmailSchema,
-    apiFunc: isEmailEmpty
+    apiFunc: confirmEmail
   },
   2: {
     description:
@@ -30,6 +31,7 @@ const formSteps: FormSteps = {
     inputPlaceholder: 'Код подтверждения',
     validation: PasswordResetCodeSchema,
     hasSpan: true,
+    apiFunc: postVerificationCode
   },
   3: {
     inputName: 'password',

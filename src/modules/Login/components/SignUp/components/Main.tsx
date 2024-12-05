@@ -15,8 +15,9 @@ import { errorNotification } from '../../../../../ui/notifications.ts'
 import { ToastContainer } from 'react-toastify'
 
 const Main = () => {
-  const [currentState, setCurrentState] = useState(0)
-  const [loading, setLoading] = useState(false)
+  const [currentState, setCurrentState] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [id, setId] = useState<number | null>(null)
 
   const {
     description,
@@ -35,9 +36,12 @@ const Main = () => {
 
   const navigate = useNavigate()
 
-  const toFinishStep = (data?: unknown) => {
-    console.log(data)
+  const actionOnStep = (data?: unknown) => {
     if (currentState !== stepItems.length - 1) {
+      const newData = data as object
+      if (data && 'id' in newData) {
+        setId(newData.id as number)
+      }
       setCurrentState(currentState + 1)
     } else {
       const finalData = data as FinalData
@@ -47,16 +51,16 @@ const Main = () => {
   }
 
   const handleSubmit = (values: FormValues) => {
-    console.log(apiFunc)
     if (apiFunc) {
-      apiFunc(values).then((data) => {
-        toFinishStep(data)
+      setLoading(true)
+      apiFunc({...values, id}).then((data) => {
+        actionOnStep(data)
       }).catch((err) => {
         errorNotification(err?.response?.data?.message || 'Произошла ошибка! Попробуйте позднее...')
       })
         .finally(() => {setLoading(false)})
     } else {
-      toFinishStep()
+      actionOnStep()
     }
   }
 
