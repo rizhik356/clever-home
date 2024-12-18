@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom'
 import routes from '../../../../../constants/routes/routes.ts'
 import { useDispatch } from 'react-redux'
 import { setToken } from '../../../slices/authSlice.ts'
+import addLocalStorageData from '../../../../../shared/helpers/addLocalStorageData.ts'
 
 const Main = () => {
   const [loginError, setLoginError] = useState(false)
@@ -24,7 +25,7 @@ const Main = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem('access_token')
 
   useEffect(() => {
     if (token) {
@@ -37,7 +38,7 @@ const Main = () => {
     setLoading(true)
     postLoginData(values)
       .then((data) => {
-        localStorage.setItem('token', data.token)
+        addLocalStorageData(data)
         setLoginError(false)
         navigate(routes.home.main)
       })
