@@ -13,8 +13,10 @@ import { FaRegEye } from 'react-icons/fa'
 import { FaRegEyeSlash } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import routes from '../../../../../constants/routes/routes.ts'
+import { useAppSelector } from '../../../../../hooks/storeHooks.ts'
+import { getToken } from '../../../../../shared/store/selectors.ts'
 import { useDispatch } from 'react-redux'
-import { setToken } from '../../../slices/authSlice.ts'
+import { setToken } from '../../../../../shared/store/slices/authSlice.ts'
 import addLocalStorageData from '../../../../../shared/helpers/addLocalStorageData.ts'
 
 const Main = () => {
@@ -24,12 +26,10 @@ const Main = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
-  const token = localStorage.getItem('access_token')
+  const token = useAppSelector(getToken)
 
   useEffect(() => {
     if (token) {
-      dispatch(setToken(token))
       navigate(routes.home.main)
     }
   }, [])
@@ -40,6 +40,7 @@ const Main = () => {
       .then((data) => {
         addLocalStorageData(data)
         setLoginError(false)
+        dispatch(setToken(data.token))
         navigate(routes.home.main)
       })
       .catch((err) => {
