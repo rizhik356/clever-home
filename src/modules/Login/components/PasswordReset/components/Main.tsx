@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import style from '../../../scss/style.module.scss'
 import { Steps } from 'antd'
 import { Form as DefaultForm, Formik } from 'formik'
-import LoginButton from '../../../../../ui/LoginButton/LoginButton'
+import LoginButton from '../../../../../ui/buttons/LoginButton/LoginButton'
 import formSteps from '../sources/formSteps'
 import {
   FormikHelperValues,

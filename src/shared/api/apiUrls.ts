@@ -1,9 +1,10 @@
 const apiUrls = {
-  login: {
+  auth: {
     sign_in: '/auth/sign-in',
     sign_up: '/auth/sign-up',
     confirm_email: '/auth/confirm-email',
     confirm_code: '/auth/confirm-code',
+    refresh_token: '/auth/refresh-token',
   },
   users: {
     check_login: '/users/login',
@@ -11,7 +12,13 @@ const apiUrls = {
     confirm_email: '/users/confirm-email',
     confirm_code: '/users/confirm-code',
     change_password: '/users/change-password',
-  }
+  },
+  rooms: {
+    get_rooms: '/rooms',
+  },
+  devices: {
+    get_devices_types: '/devices/types',
+  },
 }
 
-export default  apiUrls
+export default apiUrls

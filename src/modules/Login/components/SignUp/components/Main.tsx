@@ -1,6 +1,6 @@
 import style from '../../../scss/style.module.scss'
 import LoginInput from '../../../../../ui/LoginInput/LoginInput'
-import LoginButton from '../../../../../ui/LoginButton/LoginButton'
+import LoginButton from '../../../../../ui/buttons/LoginButton/LoginButton'
 import { Form, Formik } from 'formik'
 import hasError from '../../../helpers/hasError'
 import { useState } from 'react'
@@ -13,6 +13,7 @@ import formSteps from '../sources/formSteps'
 import routes from '../../../../../constants/routes/routes.ts'
 import { errorNotification } from '../../../../../ui/notifications.ts'
 import { ToastContainer } from 'react-toastify'
+import addLocalStorageData from '../../../../../shared/helpers/addLocalStorageData.ts'
 
 const Main = () => {
   const [currentState, setCurrentState] = useState<number>(0)
@@ -31,7 +32,7 @@ const Main = () => {
     inputIcon,
     inputSecondIcon,
     inputType,
-    apiFunc
+    apiFunc,
   } = formSteps[currentState]
 
   const navigate = useNavigate()
@@ -45,7 +46,7 @@ const Main = () => {
       setCurrentState(currentState + 1)
     } else {
       const finalData = data as FinalData
-      localStorage.setItem('token', finalData.token)
+      addLocalStorageData(finalData)
       navigate(routes.login.sign_in)
     }
   }
@@ -53,12 +54,19 @@ const Main = () => {
   const handleSubmit = (values: FormValues) => {
     if (apiFunc) {
       setLoading(true)
-      apiFunc({...values, id}).then((data) => {
-        actionOnStep(data)
-      }).catch((err) => {
-        errorNotification(err?.response?.data?.message || 'Произошла ошибка! Попробуйте позднее...')
-      })
-        .finally(() => {setLoading(false)})
+      apiFunc({ ...values, id })
+        .then((data) => {
+          actionOnStep(data)
+        })
+        .catch((err) => {
+          errorNotification(
+            err?.response?.data?.message ||
+              'Произошла ошибка! Попробуйте позднее...',
+          )
+        })
+        .finally(() => {
+          setLoading(false)
+        })
     } else {
       actionOnStep()
     }

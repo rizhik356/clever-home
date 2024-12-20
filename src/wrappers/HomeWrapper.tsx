@@ -6,6 +6,7 @@ import { useAppSelector } from '../hooks/storeHooks.ts'
 import { getToken } from '../shared/store/selectors.ts'
 import { useNavigate } from 'react-router-dom'
 import routes from '../constants/routes/routes.ts'
+import makeAuthorizedAxiosInstance from '../shared/helpers/makeAuthorizedAxiosInstance.ts'
 
 type Props = {
   children: ReactNode
@@ -18,6 +19,8 @@ const HomeWrapper = ({ children }: Props) => {
   useEffect(() => {
     if (!token) {
       navigate(routes.login.sign_in)
+    } else {
+      makeAuthorizedAxiosInstance()
     }
   }, [token])
 

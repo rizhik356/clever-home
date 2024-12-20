@@ -1,6 +1,6 @@
-import vocabulary from '../../constants/vocabylary'
+import vocabulary from '../../../constants/vocabylary.ts'
 import style from './scss/style.module.scss'
-import { Props } from './Types/Props'
+import { Props } from './Types/Props.ts'
 
 const LoginButton = (props: Props) => {
   const { name, onClick, type, loading } = props

@@ -43,7 +43,8 @@ export type FormStep = {
 }
 
 export type FinalData = {
-  token: string
+  access_token: string
+  refresh_token: string
 }
 
 export type FormSteps = { [key: number]: FormStep }

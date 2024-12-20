@@ -25,11 +25,24 @@ function App() {
             colorPrimary: '#4e8e6d',
             navArrowColor: '#4e8e6d',
           },
-          Button: {
-            colorPrimary: '#4e8e6d',
+          Modal: {
             borderRadiusLG: 0,
-            colorPrimaryHover: '#4e8e6d',
-            colorPrimaryActive: '#4e8e6d',
+          },
+          Select: {
+            activeBorderColor: 'none',
+            hoverBorderColor: 'none',
+            borderRadius: 0,
+            borderRadiusSM: 0,
+            borderRadiusLG: 0,
+            borderRadiusXS: 0,
+            colorBorder: 'none',
+            colorTextPlaceholder: '#5e5d5d',
+            activeOutlineColor: 'none',
+            optionSelectedBg: '#4e8e6d',
+            optionSelectedColor: 'white',
+          },
+          Form: {
+            itemMarginBottom: 0,
           },
         },
       }}

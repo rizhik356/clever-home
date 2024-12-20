@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './slices/authSlice.ts'
+import addNewDeviceReducer from '../../modules/Devices/slices/addNewDeviceSlice.ts'
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
+    addNewDevice: addNewDeviceReducer,
   },
 })
 

@@ -1,9 +1,9 @@
 import apiUrls from '../../../../../shared/api/apiUrls.ts'
-import axiosInstance from '../../../../../shared/api/axiosInstance.ts'
+import unAuthorizedAxiosInstance from '../../../../../shared/api/unAuthorizedAxiosInstance.ts'
 import { ApiFuncProps } from '../../../Types/Form.ts'
 
 const addNewUser = async ({ login, password, email, id }: ApiFuncProps) => {
-  const response = await axiosInstance.post(apiUrls.login.sign_up, {
+  const response = await unAuthorizedAxiosInstance.post(apiUrls.auth.sign_up, {
     login,
     password,
     email,

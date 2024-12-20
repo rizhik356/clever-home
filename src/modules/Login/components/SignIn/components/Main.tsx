@@ -1,4 +1,4 @@
-import LoginButton from '../../../../../ui/LoginButton/LoginButton'
+import LoginButton from '../../../../../ui/buttons/LoginButton/LoginButton'
 import LoginInput from '../../../../../ui/LoginInput/LoginInput'
 import { Form as DefaultForm, Formik } from 'formik'
 import style from '../../../scss/style.module.scss'
@@ -40,7 +40,7 @@ const Main = () => {
       .then((data) => {
         addLocalStorageData(data)
         setLoginError(false)
-        dispatch(setToken(data.token))
+        dispatch(setToken(data.access_token))
         navigate(routes.home.main)
       })
       .catch((err) => {

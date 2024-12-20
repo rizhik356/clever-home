@@ -14,4 +14,8 @@ const errorNotification = (name: string, toastId?: number | string) => {
   toast.error(name, { ...notifyProps, toastId })
 }
 
-export { errorNotification }
+const dismissNotification = () => {
+  toast.dismiss()
+}
+
+export { errorNotification, dismissNotification }
