@@ -1,3 +1,5 @@
+import { FormRule } from 'antd'
+
 export type OptionType = {
   label: string
   value: string | number
@@ -12,4 +14,5 @@ export type Props = {
   placeholder?: string
   name?: string
   loading?: boolean
+  rules?: FormRule[]
 }

@@ -7,6 +7,9 @@ const initialState: State = {
   devicesTypesLoading: true,
   roomsOptions: [],
   devicesTypesOptions: [],
+  newDeviceToken: '',
+  step: 0,
+  refreshForm: true,
 }
 
 const authSlice = createSlice({
@@ -31,6 +34,18 @@ const authSlice = createSlice({
     setDevicesTypesOptions: (state, action: PayloadAction<OptionType[]>) => {
       state.devicesTypesOptions = action.payload
     },
+    setNewDeviceToken: (state, action: PayloadAction<string>) => {
+      state.newDeviceToken = action.payload
+    },
+    setDefaultStep: (state) => {
+      state.step = 0
+    },
+    setNextStep: (state) => {
+      state.step += 1
+    },
+    setRefreshForm: (state, action: PayloadAction<boolean>) => {
+      state.refreshForm = action.payload
+    },
   },
 })
 
@@ -41,6 +56,10 @@ export const {
   endDeviceTypesLoading,
   setRoomsOptions,
   setDevicesTypesOptions,
+  setNewDeviceToken,
+  setNextStep,
+  setDefaultStep,
+  setRefreshForm,
 } = authSlice.actions
 
 export default authSlice.reducer

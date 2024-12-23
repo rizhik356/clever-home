@@ -1,7 +1,6 @@
 import { Modal } from 'antd'
 import { Props } from '../Types/AddNewDeviceModal.ts'
 import styles from '../scss/style.module.scss'
-import AddNewDeviceForm from './AddNewDeviceForm.tsx'
 import { ToastContainer } from 'react-toastify'
 import { useEffect } from 'react'
 import getRooms from '../../../shared/api/getRooms.ts'
@@ -10,7 +9,9 @@ import { useDispatch } from 'react-redux'
 import {
   endDeviceTypesLoading,
   endRoomsLoading,
+  setDefaultStep,
   setDevicesTypesOptions,
+  setRefreshForm,
   setRoomsOptions,
 } from '../slices/addNewDeviceSlice.ts'
 import { OptionType } from '../../../ui/CustomSelect/Types/SelectData.ts'
@@ -18,12 +19,18 @@ import {
   dismissNotification,
   errorNotification,
 } from '../../../ui/notifications.ts'
+import { useAppSelector } from '../../../hooks/storeHooks.ts'
+import stepItemsData from '../sources/stepItemsData.tsx'
 
 const AddNewDeviceModal = ({ open, onClose }: Props) => {
   const dispatch = useDispatch()
 
+  const step = useAppSelector((state) => state.addNewDevice.step)
+
   const handleClose = () => {
     dismissNotification()
+    dispatch(setRefreshForm(true))
+    dispatch(setDefaultStep())
     onClose()
   }
 
@@ -51,7 +58,7 @@ const AddNewDeviceModal = ({ open, onClose }: Props) => {
     <>
       <Modal open={open} centered footer={null} onCancel={handleClose}>
         <div className={styles['add_device_modal_container']}>
-          <AddNewDeviceForm />
+          {stepItemsData[step]}
         </div>
       </Modal>
       <ToastContainer />

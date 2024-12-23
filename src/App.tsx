@@ -40,6 +40,17 @@ function App() {
             activeOutlineColor: 'none',
             optionSelectedBg: '#4e8e6d',
             optionSelectedColor: 'white',
+            colorErrorOutline: 'none',
+          },
+          Input: {
+            borderRadius: 0,
+            borderRadiusSM: 0,
+            borderRadiusLG: 0,
+            borderRadiusXS: 0,
+            colorBorder: 'none',
+            colorTextPlaceholder: '#5e5d5d',
+            activeShadow: 'none',
+            colorErrorOutline: 'none',
           },
           Form: {
             itemMarginBottom: 0,

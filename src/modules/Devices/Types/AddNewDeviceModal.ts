@@ -16,4 +16,7 @@ export type State = {
   devicesTypesLoading: boolean
   roomsOptions: Array<OptionType>
   devicesTypesOptions: Array<OptionType>
+  newDeviceToken: string
+  step: number
+  refreshForm: boolean
 }

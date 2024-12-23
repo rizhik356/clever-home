@@ -18,6 +18,7 @@ const apiUrls = {
   },
   devices: {
     get_devices_types: '/devices/types',
+    add_user_device: '/devices/add-user-device',
   },
 }
 

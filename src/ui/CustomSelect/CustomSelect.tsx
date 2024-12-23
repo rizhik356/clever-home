@@ -8,6 +8,7 @@ const CustomSelect = ({
   data,
   name,
   loading,
+  rules,
 }: Props) => {
   const handleChange = (value: number) => {
     console.log('Выбранное значение:', value)
@@ -15,7 +16,7 @@ const CustomSelect = ({
 
   return (
     <div className={'custom_select_container'}>
-      <Form.Item name={name}>
+      <Form.Item name={name} rules={rules}>
         <Select
           className={`${className} custom_select`}
           placeholder={placeholder}
