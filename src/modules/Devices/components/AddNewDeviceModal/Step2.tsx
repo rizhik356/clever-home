@@ -1,10 +1,10 @@
 import { Steps } from 'antd'
-import { useAppSelector } from '../../../hooks/storeHooks.ts'
-import stepItems from '../sources/stepItems.ts'
-import styles from '../scss/style.module.scss'
-import CustomButton from '../../../ui/buttons/CustomButton.tsx'
+import { useAppSelector } from '../../../../hooks/storeHooks.ts'
+import stepItems from '../../sources/stepItems.ts'
+import styles from '../../scss/style.module.scss'
+import CustomButton from '../../../../ui/buttons/CustomButton.tsx'
 import { useDispatch } from 'react-redux'
-import { setNextStep } from '../slices/addNewDeviceSlice.ts'
+import { setNextStep } from '../../slices/addNewDeviceSlice.ts'
 
 const Step2 = () => {
   const { step } = useAppSelector((state) => state.addNewDevice)

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
-import Step1 from '../components/Step1.tsx'
-import Step2 from '../components/Step2.tsx'
-import Step3 from '../components/Step3.tsx'
+import Step1 from '../components/AddNewDeviceModal/Step1.tsx'
+import Step2 from '../components/AddNewDeviceModal/Step2.tsx'
+import Step3 from '../components/AddNewDeviceModal/Step3.tsx'
 
 export type StepItemsData = {
   [key: number]: ReactNode

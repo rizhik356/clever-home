@@ -35,3 +35,14 @@
   gap: 30px;
   margin: 20px 0 ;
 }
+
+.pagination {
+  margin-top: 20px;
+  width: 100%;
+  flex: 1;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}

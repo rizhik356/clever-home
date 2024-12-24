@@ -1,20 +1,20 @@
 import { Form, Steps } from 'antd'
-import CustomSelect from '../../../ui/CustomSelect/CustomSelect.tsx'
-import styles from '../scss/style.module.scss'
-import CustomButton from '../../../ui/buttons/CustomButton.tsx'
-import { useAppSelector } from '../../../hooks/storeHooks.ts'
-import { FormValues } from '../Types/AddNewDeviceModal.ts'
-import postAddNewDeviceData from '../api/postAddNewDeviceData.ts'
+import CustomSelect from '../../../../ui/CustomSelect/CustomSelect.tsx'
+import styles from '../../scss/style.module.scss'
+import CustomButton from '../../../../ui/buttons/CustomButton.tsx'
+import { useAppSelector } from '../../../../hooks/storeHooks.ts'
+import { FormValues } from '../../Types/AddNewDeviceModal.ts'
+import postAddNewDeviceData from '../../api/postAddNewDeviceData.ts'
 import { useDispatch } from 'react-redux'
 import {
   setNewDeviceToken,
   setNextStep,
   setRefreshForm,
-} from '../slices/addNewDeviceSlice.ts'
-import { errorNotification } from '../../../ui/notifications.ts'
-import CustomInput from '../../../ui/CustomInput/CustomInput.tsx'
+} from '../../slices/addNewDeviceSlice.ts'
+import { errorNotification } from '../../../../ui/notifications.ts'
+import CustomInput from '../../../../ui/CustomInput/CustomInput.tsx'
 import { useEffect } from 'react'
-import stepItems from '../sources/stepItems.ts'
+import stepItems from '../../sources/stepItems.ts'
 
 const Step1 = () => {
   const [form] = Form.useForm()
