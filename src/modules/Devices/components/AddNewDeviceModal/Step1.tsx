@@ -44,7 +44,9 @@ const Step1 = () => {
         dispatch(setNextStep())
       })
       .catch((err) => {
-        errorNotification(err)
+        errorNotification(
+          err?.response?.data?.message || 'Произошла ошибка, поробуйте позднее',
+        )
       })
   }
 

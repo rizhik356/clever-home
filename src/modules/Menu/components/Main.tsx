@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import style from '../scss/style.module.scss'
-import menuItems from '../source/menuItems'
+import menuItems from '../sources/menuItems'
 import MenuItem from './MenuItem'
 import { useLocation } from 'react-router-dom'
 
 const Main = () => {
-  const [currentItem, setCurrentItem] = useState<string>()
+  const [currentItem, setCurrentItem] = useState<string>('')
 
   const location = useLocation()
 

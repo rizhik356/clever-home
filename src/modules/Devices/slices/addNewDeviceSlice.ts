@@ -10,6 +10,7 @@ const initialState: State = {
   newDeviceToken: '',
   step: 0,
   refreshForm: true,
+  modalAutoClose: false,
 }
 
 const authSlice = createSlice({
@@ -46,6 +47,9 @@ const authSlice = createSlice({
     setRefreshForm: (state, action: PayloadAction<boolean>) => {
       state.refreshForm = action.payload
     },
+    setModalAutoClose: (state, action: PayloadAction<boolean>) => {
+      state.modalAutoClose = action.payload
+    },
   },
 })
 
@@ -60,6 +64,7 @@ export const {
   setNextStep,
   setDefaultStep,
   setRefreshForm,
+  setModalAutoClose,
 } = authSlice.actions
 
 export default authSlice.reducer

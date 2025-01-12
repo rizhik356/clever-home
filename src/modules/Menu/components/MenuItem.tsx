@@ -16,10 +16,12 @@ const MenuItem = ({ item, setCurrentItem, currentItem, pathname }: Props) => {
   }
 
   useEffect(() => {
-    if (pathname.includes(key)) {
+    if (isActive && !pathname.includes(key)) {
+      setCurrentItem('')
+    } else if (pathname.includes(key)) {
       setCurrentItem(key)
     }
-  }, [])
+  }, [pathname])
 
   return (
     <li

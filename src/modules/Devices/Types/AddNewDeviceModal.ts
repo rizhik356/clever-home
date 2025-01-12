@@ -19,4 +19,5 @@ export type State = {
   newDeviceToken: string
   step: number
   refreshForm: boolean
+  modalAutoClose: boolean
 }

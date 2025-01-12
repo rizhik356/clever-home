@@ -1,0 +1,14 @@
+.device_card {
+  width: calc((100% - var(--devices-gap)* 4) / 5);
+//  height: 300px;
+}
+
+.disabled {
+  background-color: #5e5d5d;
+  border: none;
+  opacity: 0.9;
+  .ant-card-actions {
+    border-top: none !important;
+    background-color: #5e5d5d;
+  }
+}

@@ -3,6 +3,7 @@ import CreateRoutes from './constants/routes/CreateRoutes'
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { setToken } from './shared/store/slices/authSlice.ts'
+import makeAuthorizedAxiosInstance from './shared/helpers/makeAuthorizedAxiosInstance.ts'
 
 function App() {
   const dispatch = useDispatch()
@@ -13,6 +14,7 @@ function App() {
 
     if (token) {
       dispatch(setToken(token))
+      makeAuthorizedAxiosInstance()
     }
     setLoading(false)
   }, [])

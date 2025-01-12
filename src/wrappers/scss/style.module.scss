@@ -50,6 +50,15 @@
   margin: 20px 40px 20px 20px;
   height: calc(100% - 40px);
   width: calc(100% - 60px);
+  overflow-y: auto;
+}
+
+.inner_main_container::-webkit-scrollbar {
+  display: none; /* Убираем скроллбар */
+}
+
+.inner_main_container {
+  scrollbar-width: none; /* Убираем скроллбар */
 }
 
 .login_container_inner {

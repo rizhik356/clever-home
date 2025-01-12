@@ -1,7 +1,6 @@
 import { Modal } from 'antd'
 import { Props } from '../../Types/AddNewDeviceModal.ts'
 import styles from '../../scss/style.module.scss'
-import { ToastContainer } from 'react-toastify'
 import { useEffect } from 'react'
 import getRooms from '../../../../shared/api/getRooms.ts'
 import getDevicesTypes from '../../api/getDevicesTypes.ts'
@@ -61,7 +60,6 @@ const AddNewDeviceModal = ({ open, onClose }: Props) => {
           {stepItemsData[step]}
         </div>
       </Modal>
-      <ToastContainer />
     </>
   )
 }

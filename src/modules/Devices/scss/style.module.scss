@@ -46,3 +46,12 @@
   gap: 20px;
   justify-content: center;
 }
+
+
+.devices_card_container {
+  margin-top: 20px;
+  display: flex;
+  gap: 40px;
+  justify-content: start;
+  flex-wrap: wrap;
+}

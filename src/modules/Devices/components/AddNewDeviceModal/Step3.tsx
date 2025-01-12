@@ -5,6 +5,9 @@ import stepItems from '../../sources/stepItems.ts'
 import { useEffect, useState } from 'react'
 import { Skeleton } from 'antd'
 import getNewDeviceHead from '../../api/getNewDeviceHead.ts'
+import { useDispatch } from 'react-redux'
+import { setModalAutoClose } from '../../slices/addNewDeviceSlice.ts'
+import { successNotification } from '../../../../ui/notifications.ts'
 
 const Step3 = () => {
   const [loading, setLoading] = useState<boolean>(true)
@@ -12,11 +15,12 @@ const Step3 = () => {
 
   const { newDeviceToken, step } = useAppSelector((state) => state.addNewDevice)
   const id = useAppSelector((state) => state.auth.tokenData.id)
+  const dispatch = useDispatch()
 
   const makeIframeUrl = () => {
     const url = new URL(import.meta.env.VITE_NEW_DEVICE_URL)
     url.searchParams.set('token', newDeviceToken)
-    url.searchParams.set('id', String(id))
+    url.searchParams.set('userId', String(id))
 
     return url.toString()
   }
@@ -31,6 +35,26 @@ const Step3 = () => {
         setUpdate(true)
       })
   }
+
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== import.meta.env.VITE_NEW_DEVICE_URL) return
+      const { status } = event.data
+
+      if (status === 'success') {
+        successNotification(
+          'Устройство успешно дабавлено! Подключитесь к вашей wi-fi сети',
+        )
+        dispatch(setModalAutoClose(true))
+      }
+    }
+
+    window.addEventListener('message', handleMessage)
+
+    return () => {
+      window.removeEventListener('message', handleMessage)
+    }
+  }, [])
 
   useEffect(() => {
     if (step === 2) {
@@ -58,7 +82,12 @@ const Step3 = () => {
       ) : (
         <iframe
           src={makeIframeUrl()}
-          style={{ height: '100%', width: '100%', flex: 1, marginTop: '15px' }}
+          style={{
+            height: '100%',
+            width: '100%',
+            flex: 1,
+            marginTop: '15px',
+          }}
         ></iframe>
       )}
     </div>

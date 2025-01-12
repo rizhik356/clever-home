@@ -19,7 +19,7 @@
 
   --global-green: #4e8e6d;
 
-
+  --devices-gap: 40px;
 }
 
 html,
@@ -124,4 +124,25 @@ overflow: hidden;
 
 iframe {
   border: none;
+}
+
+.disabled {
+  background-color: #5e5d5d;
+  border: 1px solid #5e5d5d;
+  opacity: 0.9;
+  cursor: not-allowed;
+  .ant-card-actions {
+    background-color: #5e5d5d;
+    border-top: 1px solid  #5e5d5d;
+    span {
+      cursor: not-allowed !important;
+    }
+  }
+}
+
+.off {
+  background: transparent;
+  .MuiButton-icon {
+    margin: 0;
+  }
 }
