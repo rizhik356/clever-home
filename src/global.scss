@@ -131,6 +131,9 @@ iframe {
   border: 1px solid #5e5d5d;
   opacity: 0.9;
   cursor: not-allowed;
+  .ant-card-body {
+    border-top: 1px solid #5e5d5d;
+  }
   .ant-card-actions {
     background-color: #5e5d5d;
     border-top: 1px solid  #5e5d5d;
@@ -145,4 +148,8 @@ iframe {
   .MuiButton-icon {
     margin: 0;
   }
+}
+
+.ant-card-body {
+  border-top: 1px solid #f0f0f0;
 }

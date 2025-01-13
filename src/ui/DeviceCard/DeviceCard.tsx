@@ -5,6 +5,7 @@ import PowerButton from './PowerButton.tsx'
 import { useState } from 'react'
 import postDeviceParam from '../../modules/Devices/api/postDeviceParams.ts'
 import { errorNotification } from '../notifications.ts'
+import makeStaticPath from '../../shared/helpers/getStaticFile.ts'
 
 const DeviceCard = ({
   id,
@@ -13,11 +14,10 @@ const DeviceCard = ({
   active,
   roomName,
   params,
+  image,
 }: Props) => {
   const [loading, setLoading] = useState<boolean>(false)
   const [deviceParams, setDeviceParams] = useState<Params>(params)
-
-  console.log(deviceParams)
 
   const { Meta } = Card
 
@@ -46,12 +46,7 @@ const DeviceCard = ({
     <Card
       className={`${styles['device_card']} ${isDisabled}`}
       hoverable={active}
-      cover={
-        <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-        />
-      }
+      cover={<img alt="example" src={makeStaticPath(image)} />}
       actions={[
         <PowerButton
           key={'power'}

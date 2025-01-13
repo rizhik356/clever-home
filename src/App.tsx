@@ -57,6 +57,7 @@ function App() {
           Form: {
             itemMarginBottom: 0,
           },
+          Card: { paddingLG: 10 },
         },
       }}
     >
