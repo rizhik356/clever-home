@@ -10,6 +10,7 @@ export type DeviceData = {
   roomId: number
   roomName: string
   params: Params
+  image: string
 }
 
 export type Props = DeviceData
