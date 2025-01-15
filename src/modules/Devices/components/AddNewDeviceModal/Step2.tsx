@@ -16,7 +16,7 @@ const Step2 = () => {
 
   return (
     <div className={`steps ${styles.form}`}>
-      <Steps current={step} items={stepItems} />
+      <Steps current={step} items={stepItems} responsive={false} />
       <ol>
         <li>
           Убедитесь, что устройство подключено к сети, и индикатор горит синим

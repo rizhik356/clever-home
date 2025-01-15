@@ -77,7 +77,7 @@ const Step3 = () => {
 
   return (
     <div className={`${styles.form} steps`}>
-      <Steps current={step} items={stepItems} />
+      <Steps current={step} items={stepItems} responsive={false} />
       {loading ? (
         <div className={styles.pagination}>
           {Array.from({ length: 8 }, (_, index) => (

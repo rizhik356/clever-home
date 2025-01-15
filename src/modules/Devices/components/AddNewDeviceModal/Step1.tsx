@@ -56,7 +56,7 @@ const Step1 = () => {
       className={`${styles.form} steps`}
       onFinish={handleFinish}
     >
-      <Steps current={step} items={stepItems} />
+      <Steps current={step} items={stepItems} responsive={false} />
       <div className={styles['form_inputs']}>
         <CustomSelect
           className={styles.select}
