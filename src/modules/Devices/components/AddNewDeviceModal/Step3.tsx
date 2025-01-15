@@ -7,7 +7,10 @@ import { Skeleton } from 'antd'
 import getNewDeviceHead from '../../api/getNewDeviceHead.ts'
 import { useDispatch } from 'react-redux'
 import { setModalAutoClose } from '../../slices/addNewDeviceSlice.ts'
-import { successNotification } from '../../../../ui/notifications.ts'
+import {
+  errorNotification,
+  successNotification,
+} from '../../../../ui/notifications.ts'
 
 const Step3 = () => {
   const [loading, setLoading] = useState<boolean>(true)
@@ -39,13 +42,15 @@ const Step3 = () => {
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       if (event.origin !== import.meta.env.VITE_NEW_DEVICE_URL) return
-      const { status } = event.data
+      const { status, message } = event.data
 
       if (status === 'success') {
         successNotification(
           'Устройство успешно дабавлено! Подключитесь к вашей wi-fi сети',
         )
         dispatch(setModalAutoClose(true))
+      } else if (status === 'error') {
+        errorNotification(message)
       }
     }
 

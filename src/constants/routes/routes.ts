@@ -10,6 +10,9 @@ const routes = {
   devices: {
     main: '/devices',
   },
+  scripts: {
+    main: '/scripts',
+  },
 }
 
 export default routes
