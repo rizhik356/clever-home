@@ -55,3 +55,8 @@
   justify-content: start;
   flex-wrap: wrap;
 }
+
+.buttons_container {
+  display: flex;
+  gap: var(--global-margin);
+}

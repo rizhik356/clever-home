@@ -1,0 +1,15 @@
+.add_script_modal_container {
+  height: 70vh;
+  margin-top: 25px;
+  overflow-y: auto;
+}
+
+.add_script_modal_container::-webkit-scrollbar {
+  display: none;
+}
+
+.collapses_container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}

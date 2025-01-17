@@ -13,7 +13,7 @@ const initialState: State = {
   modalAutoClose: false,
 }
 
-const authSlice = createSlice({
+const addNewDeviceSlice = createSlice({
   name: 'addNewDevice',
   initialState,
   reducers: {
@@ -65,6 +65,6 @@ export const {
   setDefaultStep,
   setRefreshForm,
   setModalAutoClose,
-} = authSlice.actions
+} = addNewDeviceSlice.actions
 
-export default authSlice.reducer
+export default addNewDeviceSlice.reducer

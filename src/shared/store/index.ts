@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './slices/authSlice.ts'
 import addNewDeviceReducer from '../../modules/Devices/slices/addNewDeviceSlice.ts'
+import addNewScriptSlice from '../../modules/Scripts/slices/addNewScript.ts'
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
     addNewDevice: addNewDeviceReducer,
+    addNewScript: addNewScriptSlice,
   },
 })
 

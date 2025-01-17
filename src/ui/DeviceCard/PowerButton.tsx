@@ -7,7 +7,7 @@ const PowerButton = ({ loading, onClick, power, disabled }: Props) => {
   return (
     <CustomButton
       className={'off'}
-      disabled={disabled}
+      disabled={disabled || loading}
       onClick={onClick}
       variant={power ? 'contained' : 'outlined'}
       startIcon={

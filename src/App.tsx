@@ -58,6 +58,11 @@ function App() {
             itemMarginBottom: 0,
           },
           Card: { paddingLG: 10 },
+          Collapse: {
+            headerBg: '#4e8e6d',
+            colorTextHeading: 'white',
+            borderRadiusLG: 0,
+          },
         },
       }}
     >

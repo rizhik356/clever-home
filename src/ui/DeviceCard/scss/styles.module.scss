@@ -1,6 +1,6 @@
 .device_card {
-  width: calc((100% - var(--devices-gap)* 4) / 5);
-//  height: 300px;
+  max-width: 200px;
+// height: 200px;
 }
 
 .disabled {

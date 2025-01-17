@@ -1,34 +1,28 @@
-import CustomButton from '../../../ui/buttons/CustomButton.tsx'
-import AddIcon from '@mui/icons-material/Add'
 import { useEffect, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 import AddNewDeviceModal from './AddNewDeviceModal/AddNewDeviceModal.tsx'
-import DeviceCard from '../../../ui/DeviceCard/DeviceCard.tsx'
-import styles from '../scss/style.module.scss'
 import { useAppSelector } from '../../../hooks/storeHooks.ts'
-import getUserDevices from '../api/getUserDevices.ts'
+import getUserDevices from '../../../shared/api/getUserDevices.ts'
 import { errorNotification } from '../../../ui/notifications.ts'
 import { DeviceData } from '../../../ui/DeviceCard/Types/DeviceCardTypes.ts'
 import { useDispatch } from 'react-redux'
 import { setModalAutoClose } from '../slices/addNewDeviceSlice.ts'
+import ButtonsContainer from './ButtonsContainer.tsx'
+import DevicesContainer from './DevicesContainer.tsx'
 
 const Main = () => {
   const [addNewDeviceModalOpened, setAddNewDeviceModalOpened] = useState(false)
   const [userDevices, setUserDevices] = useState<Array<DeviceData>>([])
+  const [devicesLoading, setDevicesLoading] = useState(false)
+
   const id = useAppSelector((state) => state.auth.tokenData.id)
   const modalAutoClose = useAppSelector(
     (state) => state.addNewDevice.modalAutoClose,
   )
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    if (modalAutoClose) {
-      setAddNewDeviceModalOpened(false)
-      dispatch(setModalAutoClose(false))
-    }
-  }, [modalAutoClose])
-
-  useEffect(() => {
+  const getDevicesRequest = () => {
+    setDevicesLoading(true)
     getUserDevices(id)
       .then((data) => {
         setUserDevices(data)
@@ -39,20 +33,30 @@ const Main = () => {
             'Произошла ошибка, попробуйте позднее...',
         ),
       )
+      .finally(() => {
+        setDevicesLoading(false)
+      })
+  }
+
+  useEffect(() => {
+    if (modalAutoClose) {
+      setAddNewDeviceModalOpened(false)
+      dispatch(setModalAutoClose(false))
+    }
+  }, [modalAutoClose])
+
+  useEffect(() => {
+    getDevicesRequest()
   }, [])
 
   return (
     <>
-      <CustomButton
-        variant="contained"
-        onClick={() => setAddNewDeviceModalOpened(true)}
-        startIcon={<AddIcon />}
-      >
-        Добавить устройство
-      </CustomButton>
-      <div className={styles['devices_card_container']}>
-        {userDevices?.map((item) => <DeviceCard key={item.id} {...item} />)}
-      </div>
+      <ButtonsContainer
+        devicesLoading={devicesLoading}
+        refreshHandleClick={getDevicesRequest}
+        addNewDeviceHandleClick={() => setAddNewDeviceModalOpened(true)}
+      />
+      <DevicesContainer userDevices={userDevices} />
       <AddNewDeviceModal
         open={addNewDeviceModalOpened}
         onClose={() => setAddNewDeviceModalOpened(false)}

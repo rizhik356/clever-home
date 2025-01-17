@@ -1,5 +1,5 @@
-import authorizedAxiosInstance from '../../../shared/api/authorizedAxiosInstance.ts'
-import apiUrls from '../../../shared/api/apiUrls.ts'
+import authorizedAxiosInstance from './authorizedAxiosInstance.ts'
+import apiUrls from './apiUrls.ts'
 
 const gwtUserDevices = async (id: number) => {
   const response = await authorizedAxiosInstance.get(
