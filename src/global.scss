@@ -153,3 +153,65 @@ iframe {
 .ant-card-body {
   border-top: 1px solid #f0f0f0;
 }
+ .ant-collapse-item {
+   border-bottom: 1px solid #d9d9d9;
+   letter-spacing: 1px;
+   input {
+     letter-spacing: 3px;
+   }
+ }
+
+.custom_picker {
+  width: 100%;
+  border: none;
+  position: relative;
+}
+
+.custom_picker::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--global-grey);
+  transition: height 0.3s, background-color 0.3s;
+  span {
+    color: var(--global-grey);
+  }
+}
+
+.custom_picker:hover::after {
+  background-color: var(--global-green);
+}
+
+.custom_picker.ant-picker-focused::after {
+  height: 2px;
+  background-color: var(--global-green);
+}
+
+.custom_picker.ant-picker-focused span {
+  color: var(--global-green);
+}
+
+.ant-picker-time-panel-container {
+  .ant-picker-time-panel-cell {
+    .ant-picker-time-panel-cell-inner {
+      border-radius: 0 !important;
+      padding: 0 !important;
+      text-align: center;
+    }
+  }
+  .ant-btn {
+    background: var(--global-green);
+    border-radius: 0;
+    color: white;
+    padding: 15px 15px;
+  }
+}
+
+.added_script_list {
+  .ant-list-item-meta-avatar {
+    align-self: center;
+  }
+}

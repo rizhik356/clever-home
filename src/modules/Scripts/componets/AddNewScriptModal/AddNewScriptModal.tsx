@@ -39,13 +39,9 @@ const AddNewScriptModal = ({ open, handleClose }: Props) => {
 
   return (
     <Modal open={open} centered footer={null} onCancel={onCancel}>
-      <Form
-        className={styles['add_script_modal_container']}
-        form={form}
-        initialValues={{ scriptCases: [{}] }}
-      >
+      <Form className={styles['add_script_modal_container']} form={form}>
         <Collapse
-          items={collapseData}
+          items={collapseData(form)}
           defaultActiveKey={['scriptName', 'scriptCase', 'scriptDo']}
           expandIcon={({ isActive }) => (
             <CaretRightOutlined rotate={isActive ? 90 : 0} />

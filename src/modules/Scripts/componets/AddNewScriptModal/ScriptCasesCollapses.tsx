@@ -1,8 +1,9 @@
-import { Collapse, DatePicker, Form } from 'antd'
+import { Collapse } from 'antd'
 import styles from '../../scss/styles.module.scss'
 import { Props } from '../../Types/ScriptCasesCollapses'
+import TimeCase from './TimeCase.tsx'
 
-const ScriptCasesCollapses = ({ index }: Props) => {
+const ScriptCasesCollapses = ({ index, add }: Props) => {
   return (
     <div className={styles['collapses_container']}>
       <Collapse
@@ -10,13 +11,9 @@ const ScriptCasesCollapses = ({ index }: Props) => {
         size={'small'}
         items={[
           {
-            key: 'scriptCase',
+            key: 'time',
             label: 'Время',
-            children: (
-              <Form.Item name={[index, 'time']}>
-                <DatePicker />
-              </Form.Item>
-            ),
+            children: <TimeCase index={index} add={add} />,
           },
         ]}
       />
