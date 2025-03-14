@@ -1,10 +1,12 @@
+import { DevicesTypes } from '../../../constants/devices/Types/DevicesData.ts'
+
 export type Params = {
   power: boolean
 }
 
 export type DeviceData = {
   active: boolean
-  deviceId: number
+  deviceType: keyof DevicesTypes
   id: number
   name: string
   roomId: number

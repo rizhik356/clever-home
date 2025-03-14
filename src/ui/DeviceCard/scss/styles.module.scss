@@ -1,14 +1,46 @@
 .device_card {
-  max-width: 200px;
-// height: 200px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  .card_img {
+
+  }
+}
+
+.device_card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .disabled {
-  background-color: #5e5d5d;
+  background-color: #7a7a7a;
   border: none;
-  opacity: 0.9;
+  opacity: 0.8;
+  cursor: not-allowed;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
   .ant-card-actions {
     border-top: none !important;
-    background-color: #5e5d5d;
+    background-color: #7a7a7a;
+    opacity: 0.9;
+  }
+}
+
+.disabled:hover {
+  background-color: #6b6b6b; /* немного темнее при наведении */
+}
+
+.modal_container {
+  .img_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    img {
+      max-width: 60%;
+      height: auto;
+    }
+  }
+  .modal_btn {
+    width: 100%;
   }
 }

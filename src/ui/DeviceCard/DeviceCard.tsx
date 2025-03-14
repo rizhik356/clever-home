@@ -2,14 +2,16 @@ import { Card } from 'antd'
 import styles from './scss/styles.module.scss'
 import { Params, Props } from './Types/DeviceCardTypes.ts'
 import PowerButton from './PowerButton.tsx'
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import postDeviceParam from '../../modules/Devices/api/postDeviceParams.ts'
 import { errorNotification } from '../notifications.ts'
 import makeStaticPath from '../../shared/helpers/getStaticFile.ts'
+import devicesByTypes from '../../constants/devices/devicesByTypes.ts'
+import DeviceCardModal from './DeviceCardModal.tsx'
 
 const DeviceCard = ({
   id,
-  //  deviceId,
+  deviceType,
   name,
   active,
   roomName,
@@ -18,6 +20,11 @@ const DeviceCard = ({
 }: Props) => {
   const [loading, setLoading] = useState<boolean>(false)
   const [deviceParams, setDeviceParams] = useState<Params>(params)
+  const [modalOpened, setModalOpened] = useState<boolean>(false)
+
+  const { powerBtn, hasModal } = devicesByTypes[deviceType]
+
+  const staticPath = useMemo(() => makeStaticPath(image), [image])
 
   const { Meta } = Card
 
@@ -42,23 +49,40 @@ const DeviceCard = ({
       })
   }
 
+  const handleCardClick = () => {
+    setModalOpened(true)
+  }
+
   return (
-    <Card
-      className={`${styles['device_card']} ${isDisabled}`}
-      hoverable={active}
-      cover={<img alt="example" src={makeStaticPath(image)} />}
-      actions={[
-        <PowerButton
-          key={'power'}
-          disabled={!active}
-          loading={loading}
-          onClick={handlePowerClick}
-          power={deviceParams.power}
-        />,
-      ]}
-    >
-      <Meta title={name} description={roomName || 'Гостинная'} />
-    </Card>
+    <>
+      <Card
+        className={`${styles['device_card']} ${isDisabled}`}
+        hoverable={active}
+        onClick={hasModal ? handleCardClick : undefined}
+        cover={
+          <img className={styles['card_img']} alt="example" src={staticPath} />
+        }
+        actions={[
+          powerBtn && (
+            <PowerButton
+              key={'power'}
+              disabled={!active}
+              loading={loading}
+              onClick={handlePowerClick}
+              power={deviceParams.power}
+            />
+          ),
+        ]}
+      >
+        <Meta title={name} description={roomName || 'Гостинная'} />
+      </Card>
+      <DeviceCardModal
+        close={() => setModalOpened(false)}
+        open={modalOpened}
+        imgPath={staticPath}
+        title={name}
+      />
+    </>
   )
 }
 

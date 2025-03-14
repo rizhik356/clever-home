@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import style from '../../../scss/style.module.scss'
 import { Steps } from 'antd'
-import { Form as DefaultForm, Formik } from 'formik'
-import LoginButton from '../../../../../ui/buttons/LoginButton/LoginButton'
 import formSteps from '../sources/formSteps'
 import {
   FormikHelperValues,
@@ -10,14 +8,12 @@ import {
   RequestState,
 } from '../../../Types/Form'
 import stepItems from '../sources/stepsItems'
-import FooterErrors from '../../FooterErrors'
 import { useNavigate } from 'react-router-dom'
 import { errorNotification } from '../../../../../ui/notifications.ts'
 import routes from '../../../../../constants/routes/routes.ts'
 import { ToastContainer } from 'react-toastify'
-import FooterSpan from './FooterSpan.tsx'
-import { inititalRequestState, inititalValues } from '../sources/form.ts'
-import InputContainer from './InputContainer.tsx'
+import { inititalRequestState } from '../sources/form.ts'
+import Form from './Form.tsx'
 
 const Main = () => {
   const [currentState, setCurrentState] = useState<number>(0)
@@ -27,12 +23,11 @@ const Main = () => {
 
   const navigate = useNavigate()
 
-  const { description, validation, hasSpan, apiFunc } = formSteps[currentState]
+  const { apiFunc } = formSteps[currentState]
 
   useEffect(() => {
     setCurrentState(0)
   }, [])
-  useEffect(() => {}, [])
 
   const handleBack = (resetForm: () => void) => {
     resetForm()
@@ -75,36 +70,14 @@ const Main = () => {
     <>
       <div className={style['steps_div']}>
         <Steps current={currentState} items={stepItems} responsive={false} />
-        <Formik
-          initialValues={inititalValues}
-          onSubmit={handleSubmit}
-          validationSchema={validation}
-          validateOnChange={false}
-          validateOnBlur={true}
-        >
-          {({ errors, touched, resetForm }) => (
-            <DefaultForm className={style['reset_password_form']} noValidate>
-              <span className={style['reset_password_desc']}>
-                {description}
-              </span>
-              <InputContainer
-                errors={errors}
-                touched={touched}
-                formStep={formSteps[currentState]}
-              />
-              <LoginButton name="Отправить" type="submit" loading={loading} />
-              <FooterSpan
-                hasSpan={hasSpan}
-                resetForm={resetForm}
-                handleBack={handleBack}
-              />
-              <FooterErrors errors={errors} />
-            </DefaultForm>
-          )}
-        </Formik>
+        <Form
+          handleBack={handleBack}
+          loading={loading}
+          currentState={currentState}
+          handleSubmit={handleSubmit}
+        />
         <ToastContainer />
       </div>
-
       <div className={style['login_body_form']}></div>
     </>
   )
