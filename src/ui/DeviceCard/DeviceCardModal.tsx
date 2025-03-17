@@ -12,7 +12,7 @@ const DeviceCardModal = ({ open, close, imgPath, title }: Props) => {
           <img alt={'modal_img'} src={imgPath} />
         </div>
         <CustomButton startIcon={<AddIcon />} className={styles['modal_btn']}>
-          Добавить устройство
+          Настройка вывода
         </CustomButton>
       </div>
     </Modal>

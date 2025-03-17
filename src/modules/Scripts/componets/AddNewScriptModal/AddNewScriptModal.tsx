@@ -16,7 +16,6 @@ const AddNewScriptModal = ({ open, handleClose }: Props) => {
   const [form] = Form.useForm()
 
   const onCancel = () => {
-    console.log(form.getFieldsValue())
     form.resetFields()
     handleClose()
   }

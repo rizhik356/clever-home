@@ -20,14 +20,14 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease;
   .ant-card-actions {
-    border-top: none !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.5) !important;
     background-color: #7a7a7a;
     opacity: 0.9;
   }
 }
 
 .disabled:hover {
-  background-color: #6b6b6b; /* немного темнее при наведении */
+  background-color: #6b6b6b;
 }
 
 .modal_container {
